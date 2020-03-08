@@ -1,6 +1,6 @@
 package w2;
 
-public class Student {
+public class Student implements Comparable<Student> {
     int id;
     String name;
 
@@ -11,5 +11,16 @@ public class Student {
 
     public String toString() {
         return id + " " + name;
+    }
+
+    @Override
+    public int compareTo(Student o) {
+        if (this.id == o.id) {
+            return this.name.compareTo(o.name);
+        }
+
+        if (this.id < o.id) return -1;
+
+        return 1;
     }
 }
