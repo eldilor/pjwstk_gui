@@ -1,6 +1,6 @@
 package w2;
 
-public class MyList<T> {
+public class MyList<T extends Comparable<T>> {
     Element head;
 
     public void add(T data) {

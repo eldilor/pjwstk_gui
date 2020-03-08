@@ -32,5 +32,16 @@ public class Main {
         for (Student student : students) {
             System.out.println(student);
         }
+
+        MyList<A> listA = new MyList<>();
+        listA.add(new A());
+
+    }
+}
+
+class A implements Comparable<A> {
+    @Override
+    public int compareTo(A o) {
+        return 0;
     }
 }
