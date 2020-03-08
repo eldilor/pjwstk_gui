@@ -1,6 +1,6 @@
 package w2;
 
-public class Element {
-    String data;
+public class Element<T>{
+    T data;
     Element next;
 }

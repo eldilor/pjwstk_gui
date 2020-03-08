@@ -1,12 +1,12 @@
 package w2;
 
-public class MyList {
+public class MyList<T> {
     Element head;
 
-    public void add(String str) {
-        Element tmp = new Element();
+    public void add(T data) {
+        Element<T> tmp = new Element<>();
 
-        tmp.data = str;
+        tmp.data = data;
         tmp.next = head;
         head = tmp;
     }
