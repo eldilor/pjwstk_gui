@@ -180,7 +180,10 @@ public class Store {
 
         if (quantity == 0) return;
 
-        state.currentCustomer.getCart().addPurchase(new Purchase(products.get(chosenOption - 1), quantity));
+        Purchase purchase = new Purchase(products.get(chosenOption - 1), quantity);
+        state.currentCustomer.getCart().addPurchase(purchase);
+
+        System.out.println("Dodano do koszyka: \n  " + purchase);
     }
 
     private static void shop_cart() {
