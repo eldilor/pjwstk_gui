@@ -132,6 +132,18 @@ public class Store {
         return possibleActions;
     }
 
+    private static boolean confirm(String message) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println(message);
+        System.out.println("[0] Anuluj");
+        System.out.println("[1] Potwierdź");
+
+        String in = scanner.nextLine();
+
+        return in.equals("1");
+    }
+
     private static void start_shop() {
         Scanner scanner = new Scanner(System.in);
 
@@ -161,6 +173,8 @@ public class Store {
     }
 
     private static void shop_start() {
+        if (!confirm("Czy na pewno chcesz wyjść ze sklepu?")) return;
+
         state.currentNode = Node.START;
         state.possibleActions = getStartPossibleActionTypes();
         state.currentCustomer = null;
@@ -218,6 +232,8 @@ public class Store {
     }
 
     private static void end() {
+        if (!confirm("Czy na pewno chcesz zamknąć program?")) return;
+
         state.isEnd = true;
     }
 }
