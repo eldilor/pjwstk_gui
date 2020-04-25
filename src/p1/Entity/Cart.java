@@ -1,6 +1,6 @@
 package p1.Entity;
 
-import p1.utils.PriceFormatter;
+import p1.utils.PurchaseListFormatter;
 
 import java.util.ArrayList;
 
@@ -27,19 +27,20 @@ public class Cart {
         if (!isAlreadyInCart) this.purchases.add(newPurchase);
     }
 
+    public void empty() {
+        this.customer = null;
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public ArrayList<Purchase> getPurchases() {
+        return purchases;
+    }
+
     @Override
     public String toString() {
-        String purchasesString = "";
-        int total = 0;
-
-        for (int i = 0; i < purchases.size(); i++) {
-            Purchase purchase = purchases.get(i);
-            purchasesString += "\t" + (i+1) + ". " + purchase + "\n";
-            total += purchase.getProduct().getPrice() * purchase.getQuantity();
-        }
-
-        purchasesString += "--------------\nSuma:\n" + PriceFormatter.format(total);
-
-        return "Twój Koszyk:\n" + purchasesString;
+        return "Twój Koszyk:\n" + PurchaseListFormatter.format(purchases);
     }
 }

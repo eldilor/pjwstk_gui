@@ -1,7 +1,5 @@
 package p1.Entity;
 
-import p1.Bill;
-
 import java.util.ArrayList;
 
 public class Customer {
@@ -25,5 +23,17 @@ public class Customer {
 
     public ArrayList<Bill> getBills() {
         return bills;
+    }
+
+    public Bill checkout(CheckOut checkOut) {
+        return checkOut.checkout(cart);
+    }
+
+    public void addBill(Bill bill) {
+        this.bills.add(bill);
+    }
+
+    public void emptyCart() {
+        this.cart = new Cart(this);
     }
 }
