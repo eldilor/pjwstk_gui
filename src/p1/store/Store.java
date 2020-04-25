@@ -172,7 +172,7 @@ public class Store {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Wybierz produkt:");
 
-        String options = "  [0] Anuluj";
+        String options = "  [0] Anuluj\n";
         ArrayList<Product> products = ProductRepository.getAll();
 
         for (int i = 0; i < products.size(); i++) {
@@ -193,6 +193,8 @@ public class Store {
     }
 
     private static void shop_cart() {
+        System.out.println(state.currentCustomer.getCart() + "\n");
+
         state.currentNode = Node.CART;
         state.possibleActions = getCartPossibleActionTypes();
     }
