@@ -1,11 +1,14 @@
 package p1.store;
 
+import p1.Entity.Customer;
+
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Store {
     private static State state;
 
-    public static void createStore() {
+    public static State createStore() {
         state = new State();
         state.message = NodeType.START.getName();
         state.possibleActions = new ArrayList<>();
@@ -13,11 +16,13 @@ public class Store {
         state.possibleActions.add(Action.START_END);
         state.possibleActions.add(Action.START_SHOP);
         state.possibleActions.add(Action.START_REPORT);
+
+        state.customers = new ArrayList<>();
+
+        return state;
     }
 
     public static void dispatch(Action action) {
-        if (state == null) createStore();
-
         switch (action) {
             case START_SHOP:
                 start_shop();
@@ -128,6 +133,24 @@ public class Store {
     }
 
     private static void start_shop() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Podaj imię:");
+        String customerName = scanner.nextLine();
+        Customer currentCustomer = null;
+
+        for (Customer customer : state.customers) {
+            if (customer.getName().equals(customerName)) {
+                currentCustomer = customer;
+            }
+        }
+
+        if (currentCustomer == null) {
+             currentCustomer = new Customer(customerName);
+             state.customers.add(currentCustomer);
+        }
+
+        state.currentCustomer = currentCustomer;
         state.message = NodeType.SHOP.getName();
         state.possibleActions = getShopPossibleActionTypes();
     }
@@ -140,6 +163,7 @@ public class Store {
     private static void shop_start() {
         state.message = NodeType.START.getName();
         state.possibleActions = getStartPossibleActionTypes();
+        state.currentCustomer = null;
     }
 
     private static void shop_buy() {
@@ -180,6 +204,7 @@ public class Store {
     private static void checkout_start() {
         state.message = NodeType.START.getName();
         state.possibleActions = getStartPossibleActionTypes();
+        state.currentCustomer = null;
     }
 
     private static void checkout_shop() {
