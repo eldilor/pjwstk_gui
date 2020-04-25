@@ -2,7 +2,9 @@ package p1.Entity;
 
 
 public class CheckOut {
-    public Bill checkout (Customer customer) {
+    private Report report = new Report();
+
+    public Bill checkout(Customer customer) {
         return checkout(customer.getCart());
     }
 
@@ -12,6 +14,12 @@ public class CheckOut {
         cart.getCustomer().emptyCart();
         cart.empty();
 
+        this.report.addBill(bill);
+
         return bill;
+    }
+
+    public Report getReport() {
+        return report;
     }
 }

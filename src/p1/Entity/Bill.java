@@ -25,4 +25,12 @@ public class Bill {
 
         return string;
     }
+
+    public int getTotal() {
+        return this.purchases.stream().mapToInt(Purchase::getTotal).sum();
+    }
+
+    public Customer getCustomer() {
+        return this.customer;
+    }
 }
