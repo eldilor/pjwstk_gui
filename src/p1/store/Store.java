@@ -27,34 +27,9 @@ public class Store {
         return state;
     }
 
-    public static void dispatch(Action action) {
-        switch (action) {
-            case START_SHOP:
-                start_shop();
-                break;
-            case START_REPORT:
-                start_report();
-                break;
-            case SHOP_START:
-                shop_start();
-                break;
-            case SHOP_BUY:
-                shop_buy();
-                break;
-            case SHOP_CART:
-                shop_cart();
-                break;
-            case SHOP_CHECKOUT:
-            case CART_CHECKOUT:
-                checkout();
-                break;
-            case CART_SHOP:
-                cart_shop();
-                break;
-            case START_END:
-            case SHOP_END:
-                end();
-        }
+    public static void dispatch(Action action) throws Exception {
+        String methodName = action.getFrom().toString().toLowerCase() + "_" + action.getTo().toString().toLowerCase();
+        Store.class.getDeclaredMethod(methodName).invoke(null);
     }
 
     public static State getState() {
@@ -173,6 +148,14 @@ public class Store {
         state.possibleActions = getCartPossibleActionTypes();
     }
 
+    private static void shop_checkout() {
+        checkout();
+    }
+
+    private static void cart_checkout() {
+        checkout();
+    }
+
     private static void checkout() {
         if (state.currentCustomer.getCart().isEmpty()) {
             System.out.println("Koszyk jest pusty!");
@@ -192,6 +175,14 @@ public class Store {
     private static void cart_shop() {
         state.currentNode = Node.SHOP;
         state.possibleActions = getShopPossibleActionTypes();
+    }
+
+    private static void start_end() {
+        end();
+    }
+
+    private static void shop_end() {
+        end();
     }
 
     private static void end() {
