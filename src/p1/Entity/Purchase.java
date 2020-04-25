@@ -28,6 +28,10 @@ public class Purchase {
         return quantity;
     }
 
+    public int getTotal() {
+        return quantity * product.getPrice();
+    }
+
     public boolean equals(Purchase purchase) {
         return this.product.getId() == purchase.product.getId();
     }

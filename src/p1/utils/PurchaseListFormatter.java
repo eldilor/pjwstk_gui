@@ -12,7 +12,7 @@ public class PurchaseListFormatter {
         for (int i = 0; i < purchases.size(); i++) {
             Purchase purchase = purchases.get(i);
             purchasesString += "\t" + (i+1) + ". " + purchase + "\n";
-            total += purchase.getProduct().getPrice() * purchase.getQuantity();
+            total += purchase.getTotal();
         }
 
         purchasesString += "--------------\nSuma: " + PriceFormatter.format(total);
