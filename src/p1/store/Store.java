@@ -1,6 +1,9 @@
 package p1.store;
 
 import p1.Entity.Customer;
+import p1.Entity.Product;
+import p1.Entity.Purchase;
+import p1.Repository.ProductRepository;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -41,12 +44,6 @@ public class Store {
                 break;
             case SHOP_CHECKOUT:
                 shop_checkout();
-                break;
-            case BUY_SHOP:
-                buy_shop();
-                break;
-            case BUY_CART:
-                buy_cart();
                 break;
             case CART_SHOP:
                 cart_shop();
@@ -101,15 +98,6 @@ public class Store {
 
         possibleActions.add(Action.REPORT_END);
         possibleActions.add(Action.REPORT_START);
-
-        return possibleActions;
-    }
-
-    private static ArrayList<Action> getBuyPossibleActionTypes() {
-        ArrayList<Action> possibleActions = new ArrayList<>();
-
-        possibleActions.add(Action.BUY_SHOP);
-        possibleActions.add(Action.BUY_CART);
 
         return possibleActions;
     }
@@ -181,8 +169,27 @@ public class Store {
     }
 
     private static void shop_buy() {
-        state.currentNode = Node.BUY;
-        state.possibleActions = getBuyPossibleActionTypes();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Wybierz produkt:");
+
+        String options = "  [0] Anuluj";
+        ArrayList<Product> products = ProductRepository.getAll();
+
+        for (int i = 0; i < products.size(); i++) {
+            options += "  [" + (i + 1) + "] " + products.get(i) + "\n";
+        }
+
+        System.out.println(options);
+        int chosenOption = scanner.nextInt();
+
+        if (chosenOption == 0) return;
+
+        System.out.println("Podaj ilość:");
+        int quantity = scanner.nextInt();
+
+        if (quantity == 0) return;
+
+        state.currentCustomer.getCart().addPurchase(new Purchase(products.get(chosenOption - 1), quantity));
     }
 
     private static void shop_cart() {
@@ -193,16 +200,6 @@ public class Store {
     private static void shop_checkout() {
         state.currentNode = Node.CHECKOUT;
         state.possibleActions = getCheckoutPossibleActionTypes();
-    }
-
-    private static void buy_shop() {
-        state.currentNode = Node.SHOP;
-        state.possibleActions = getShopPossibleActionTypes();
-    }
-
-    private static void buy_cart() {
-        state.currentNode = Node.CART;
-        state.possibleActions = getCartPossibleActionTypes();
     }
 
     private static void cart_shop() {
