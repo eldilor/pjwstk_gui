@@ -1,41 +1,41 @@
 package p1.store;
 
 public enum Action {
-    START_SHOP(NodeType.START, NodeType.SHOP),
-    START_REPORT(NodeType.START, NodeType.REPORT),
-    START_END(NodeType.START, NodeType.END),
+    START_SHOP(Node.START, Node.SHOP),
+    START_REPORT(Node.START, Node.REPORT),
+    START_END(Node.START, Node.END),
 
-    SHOP_START(NodeType.SHOP, NodeType.START),
-    SHOP_BUY(NodeType.SHOP, NodeType.BUY),
-    SHOP_CART(NodeType.SHOP, NodeType.CART),
-    SHOP_CHECKOUT(NodeType.SHOP, NodeType.CHECKOUT),
-    SHOP_END(NodeType.SHOP, NodeType.END),
+    SHOP_START(Node.SHOP, Node.START),
+    SHOP_BUY(Node.SHOP, Node.BUY),
+    SHOP_CART(Node.SHOP, Node.CART),
+    SHOP_CHECKOUT(Node.SHOP, Node.CHECKOUT),
+    SHOP_END(Node.SHOP, Node.END),
 
-    BUY_SHOP(NodeType.BUY, NodeType.SHOP),
-    BUY_CART(NodeType.BUY, NodeType.CART),
+    BUY_SHOP(Node.BUY, Node.SHOP),
+    BUY_CART(Node.BUY, Node.CART),
 
-    CART_SHOP(NodeType.CART, NodeType.SHOP),
-    CART_CHECKOUT(NodeType.CART, NodeType.CHECKOUT),
+    CART_SHOP(Node.CART, Node.SHOP),
+    CART_CHECKOUT(Node.CART, Node.CHECKOUT),
 
-    CHECKOUT_START(NodeType.CHECKOUT, NodeType.START),
-    CHECKOUT_SHOP(NodeType.CHECKOUT, NodeType.SHOP),
+    CHECKOUT_START(Node.CHECKOUT, Node.START),
+    CHECKOUT_SHOP(Node.CHECKOUT, Node.SHOP),
 
-    REPORT_END(NodeType.REPORT, NodeType.END),
-    REPORT_START(NodeType.REPORT, NodeType.START);
+    REPORT_END(Node.REPORT, Node.END),
+    REPORT_START(Node.REPORT, Node.START);
 
-    private NodeType from;
-    private NodeType to;
+    private Node from;
+    private Node to;
 
-    Action(NodeType from, NodeType to) {
+    Action(Node from, Node to) {
         this.from = from;
         this.to = to;
     }
 
-    public NodeType getFrom() {
+    public Node getFrom() {
         return from;
     }
 
-    public NodeType getTo() {
+    public Node getTo() {
         return to;
     }
 }

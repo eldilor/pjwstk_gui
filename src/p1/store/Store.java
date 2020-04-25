@@ -10,7 +10,7 @@ public class Store {
 
     public static State createStore() {
         state = new State();
-        state.message = NodeType.START.getName();
+        state.currentNode = Node.START;
         state.possibleActions = new ArrayList<>();
 
         state.possibleActions.add(Action.START_END);
@@ -151,69 +151,69 @@ public class Store {
         }
 
         state.currentCustomer = currentCustomer;
-        state.message = NodeType.SHOP.getName();
+        state.currentNode = Node.SHOP;
         state.possibleActions = getShopPossibleActionTypes();
     }
 
     private static void start_report() {
-        state.message = NodeType.REPORT.getName();
+        state.currentNode = Node.REPORT;
         state.possibleActions = getReportPossibleActionTypes();
     }
 
     private static void shop_start() {
-        state.message = NodeType.START.getName();
+        state.currentNode = Node.START;
         state.possibleActions = getStartPossibleActionTypes();
         state.currentCustomer = null;
     }
 
     private static void shop_buy() {
-        state.message = NodeType.BUY.getName();
+        state.currentNode = Node.BUY;
         state.possibleActions = getBuyPossibleActionTypes();
     }
 
     private static void shop_cart() {
-        state.message = NodeType.CART.getName();
+        state.currentNode = Node.CART;
         state.possibleActions = getCartPossibleActionTypes();
     }
 
     private static void shop_checkout() {
-        state.message = NodeType.CHECKOUT.getName();
+        state.currentNode = Node.CHECKOUT;
         state.possibleActions = getCheckoutPossibleActionTypes();
     }
 
     private static void buy_shop() {
-        state.message = NodeType.SHOP.getName();
+        state.currentNode = Node.SHOP;
         state.possibleActions = getShopPossibleActionTypes();
     }
 
     private static void buy_cart() {
-        state.message = NodeType.CART.getName();
+        state.currentNode = Node.CART;
         state.possibleActions = getCartPossibleActionTypes();
     }
 
     private static void cart_shop() {
-        state.message = NodeType.SHOP.getName();
+        state.currentNode = Node.SHOP;
         state.possibleActions = getShopPossibleActionTypes();
     }
 
     private static void cart_checkout() {
-        state.message = NodeType.CHECKOUT.getName();
+        state.currentNode = Node.CHECKOUT;
         state.possibleActions = getCheckoutPossibleActionTypes();
     }
 
     private static void checkout_start() {
-        state.message = NodeType.START.getName();
+        state.currentNode = Node.START;
         state.possibleActions = getStartPossibleActionTypes();
         state.currentCustomer = null;
     }
 
     private static void checkout_shop() {
-        state.message = NodeType.SHOP.getName();
+        state.currentNode = Node.SHOP;
         state.possibleActions = getShopPossibleActionTypes();
     }
 
     private static void report_start() {
-        state.message = NodeType.START.getName();
+        state.currentNode = Node.START;
         state.possibleActions = getStartPossibleActionTypes();
     }
 

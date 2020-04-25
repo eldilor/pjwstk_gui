@@ -1,6 +1,6 @@
 package p1.store;
 
-public enum NodeType {
+public enum Node {
     START("Menu główne"),
     REPORT("Raport"),
     SHOP("Sklep"),
@@ -11,7 +11,7 @@ public enum NodeType {
 
     private String name;
 
-    NodeType(String name) {
+    Node(String name) {
         this.name = name;
     }
 

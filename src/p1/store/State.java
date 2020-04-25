@@ -5,14 +5,14 @@ import p1.Entity.Customer;
 import java.util.ArrayList;
 
 public class State {
-    String message;
+    Node currentNode;
     boolean isEnd;
     ArrayList<Action> possibleActions;
     Customer currentCustomer;
     ArrayList<Customer> customers;
 
-    public String getMessage() {
-        return message;
+    public Node getCurrentNode() {
+        return currentNode;
     }
 
     public boolean isEnd() {
