@@ -1,5 +1,6 @@
 package p1.store;
 
+import p1.Entity.CheckOut;
 import p1.Entity.Customer;
 
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ public class State {
     ArrayList<Action> possibleActions;
     Customer currentCustomer;
     ArrayList<Customer> customers;
+    CheckOut checkout;
 
     public Node getCurrentNode() {
         return currentNode;
@@ -29,5 +31,9 @@ public class State {
 
     public ArrayList<Customer> getCustomers() {
         return customers;
+    }
+
+    public CheckOut getCheckout() {
+        return checkout;
     }
 }

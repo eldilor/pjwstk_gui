@@ -1,5 +1,6 @@
 package p1.store;
 
+import p1.Entity.CheckOut;
 import p1.Entity.Customer;
 import p1.Entity.Product;
 import p1.Entity.Purchase;
@@ -21,6 +22,7 @@ public class Store {
         state.possibleActions.add(Action.START_REPORT);
 
         state.customers = new ArrayList<>();
+        state.checkout = new CheckOut();
 
         return state;
     }
@@ -43,13 +45,11 @@ public class Store {
                 shop_cart();
                 break;
             case SHOP_CHECKOUT:
-                shop_checkout();
+            case CART_CHECKOUT:
+                checkout();
                 break;
             case CART_SHOP:
                 cart_shop();
-                break;
-            case CART_CHECKOUT:
-                cart_checkout();
                 break;
             case CHECKOUT_START:
                 checkout_start();
@@ -107,15 +107,6 @@ public class Store {
 
         possibleActions.add(Action.CART_SHOP);
         possibleActions.add(Action.CART_CHECKOUT);
-
-        return possibleActions;
-    }
-
-    private static ArrayList<Action> getCheckoutPossibleActionTypes() {
-        ArrayList<Action> possibleActions = new ArrayList<>();
-
-        possibleActions.add(Action.CHECKOUT_SHOP);
-        possibleActions.add(Action.CHECKOUT_START);
 
         return possibleActions;
     }
@@ -199,19 +190,20 @@ public class Store {
         state.possibleActions = getCartPossibleActionTypes();
     }
 
-    private static void shop_checkout() {
-        state.currentNode = Node.CHECKOUT;
-        state.possibleActions = getCheckoutPossibleActionTypes();
+    private static void checkout() {
+        if (!confirm("Czy na pewno chcesz przejść do kasy?")) return;
+
+        System.out.println("\nTwój rachunek:");
+        System.out.println(state.checkout.checkout(state.currentCustomer));
+
+        state.currentNode = Node.START;
+        state.possibleActions = getStartPossibleActionTypes();
+        state.currentCustomer = null;
     }
 
     private static void cart_shop() {
         state.currentNode = Node.SHOP;
         state.possibleActions = getShopPossibleActionTypes();
-    }
-
-    private static void cart_checkout() {
-        state.currentNode = Node.CHECKOUT;
-        state.possibleActions = getCheckoutPossibleActionTypes();
     }
 
     private static void checkout_start() {
