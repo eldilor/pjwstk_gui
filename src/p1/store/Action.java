@@ -14,9 +14,6 @@ public enum Action {
     CART_SHOP(Node.CART, Node.SHOP),
     CART_CHECKOUT(Node.CART, Node.CHECKOUT),
 
-    CHECKOUT_START(Node.CHECKOUT, Node.START),
-    CHECKOUT_SHOP(Node.CHECKOUT, Node.SHOP),
-
     REPORT_END(Node.REPORT, Node.END),
     REPORT_START(Node.REPORT, Node.START);
 

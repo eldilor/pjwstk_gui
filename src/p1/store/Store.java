@@ -51,12 +51,6 @@ public class Store {
             case CART_SHOP:
                 cart_shop();
                 break;
-            case CHECKOUT_START:
-                checkout_start();
-                break;
-            case CHECKOUT_SHOP:
-                checkout_shop();
-                break;
             case REPORT_START:
                 report_start();
                 break;
@@ -205,17 +199,6 @@ public class Store {
     }
 
     private static void cart_shop() {
-        state.currentNode = Node.SHOP;
-        state.possibleActions = getShopPossibleActionTypes();
-    }
-
-    private static void checkout_start() {
-        state.currentNode = Node.START;
-        state.possibleActions = getStartPossibleActionTypes();
-        state.currentCustomer = null;
-    }
-
-    private static void checkout_shop() {
         state.currentNode = Node.SHOP;
         state.possibleActions = getShopPossibleActionTypes();
     }
