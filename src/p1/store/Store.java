@@ -51,12 +51,8 @@ public class Store {
             case CART_SHOP:
                 cart_shop();
                 break;
-            case REPORT_START:
-                report_start();
-                break;
             case START_END:
             case SHOP_END:
-            case REPORT_END:
                 end();
         }
     }
@@ -83,15 +79,6 @@ public class Store {
         possibleActions.add(Action.SHOP_BUY);
         possibleActions.add(Action.SHOP_CART);
         possibleActions.add(Action.SHOP_CHECKOUT);
-
-        return possibleActions;
-    }
-
-    private static ArrayList<Action> getReportPossibleActionTypes() {
-        ArrayList<Action> possibleActions = new ArrayList<>();
-
-        possibleActions.add(Action.REPORT_END);
-        possibleActions.add(Action.REPORT_START);
 
         return possibleActions;
     }
@@ -141,8 +128,7 @@ public class Store {
     }
 
     private static void start_report() {
-        state.currentNode = Node.REPORT;
-        state.possibleActions = getReportPossibleActionTypes();
+        System.out.println(state.checkout.getReport());
     }
 
     private static void shop_start() {
@@ -201,11 +187,6 @@ public class Store {
     private static void cart_shop() {
         state.currentNode = Node.SHOP;
         state.possibleActions = getShopPossibleActionTypes();
-    }
-
-    private static void report_start() {
-        state.currentNode = Node.START;
-        state.possibleActions = getStartPossibleActionTypes();
     }
 
     private static void end() {

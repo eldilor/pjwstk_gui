@@ -12,10 +12,7 @@ public enum Action {
     SHOP_END(Node.SHOP, Node.END),
 
     CART_SHOP(Node.CART, Node.SHOP),
-    CART_CHECKOUT(Node.CART, Node.CHECKOUT),
-
-    REPORT_END(Node.REPORT, Node.END),
-    REPORT_START(Node.REPORT, Node.START);
+    CART_CHECKOUT(Node.CART, Node.CHECKOUT);
 
     private Node from;
     private Node to;
