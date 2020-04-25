@@ -15,4 +15,20 @@ public class Purchase {
     public String toString() {
         return product.getName() + " x " + quantity + " | " + PriceFormatter.format(product.getPrice() * quantity);
     }
+
+    public void increaseQuantity(int increaseBy) {
+        quantity += increaseBy;
+    }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public boolean equals(Purchase purchase) {
+        return this.product.getId() == purchase.product.getId();
+    }
 }
