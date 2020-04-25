@@ -5,6 +5,6 @@ public class PriceFormatter {
         int zl = price / 100;
         int gr = price % 100;
 
-        return zl + "," + (gr > 9 ? gr : "0" + gr) + " zł";
+        return zl + "," + DigitFormatter.format(gr) + " zł";
     }
 }
