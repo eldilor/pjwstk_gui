@@ -174,6 +174,11 @@ public class Store {
     }
 
     private static void checkout() {
+        if (state.currentCustomer.getCart().isEmpty()) {
+            System.out.println("Koszyk jest pusty!");
+            return;
+        }
+
         if (!confirm("Czy na pewno chcesz przejść do kasy?")) return;
 
         System.out.println("\nTwój rachunek:");

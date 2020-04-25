@@ -27,8 +27,13 @@ public class Cart {
         if (!isAlreadyInCart) this.purchases.add(newPurchase);
     }
 
+    public boolean isEmpty() {
+        return this.purchases.size() == 0;
+    }
+
     public void empty() {
         this.customer = null;
+        this.purchases = new ArrayList<>();
     }
 
     public Customer getCustomer() {
@@ -41,6 +46,8 @@ public class Cart {
 
     @Override
     public String toString() {
+        if (purchases.size() == 0) return "Koszyk jest pusty";
+
         return "Twój Koszyk:\n" + PurchaseListFormatter.format(purchases);
     }
 }
