@@ -23,7 +23,6 @@ public class Main {
                 Action action = state.getPossibleActions().get(chosenOption);
 
                 Store.dispatch(action);
-                state = Store.getState();
                 System.out.println("\n================\n");
             } catch (Exception ex) {
                 scanner = new Scanner(System.in);
