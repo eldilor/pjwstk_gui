@@ -6,7 +6,7 @@ import p1.utils.PurchaseListFormatter;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Bill {
+public class Bill implements Comparable<Bill> {
     private ArrayList<Purchase> purchases;
     private Customer customer;
     private Date date;
@@ -32,5 +32,10 @@ public class Bill {
 
     public Customer getCustomer() {
         return this.customer;
+    }
+
+    @Override
+    public int compareTo(Bill bill) {
+        return date.before(bill.date) ? 1 : -1;
     }
 }

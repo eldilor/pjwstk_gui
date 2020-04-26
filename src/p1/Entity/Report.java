@@ -3,6 +3,7 @@ package p1.Entity;
 import p1.utils.PriceFormatter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Report {
     ArrayList<Bill> bills = new ArrayList<>();
@@ -28,8 +29,17 @@ public class Report {
 
     @Override
     public String toString() {
+        ArrayList<Bill> sortedBills = new ArrayList<>(bills);
+        Collections.sort(sortedBills);
+        String transactions = "";
+
+        for (int i = 0; i < sortedBills.size(); i++) {
+            transactions += "  " + (i + 1) + ". " + sortedBills.get(i).getCustomer().getName() + " - " + PriceFormatter.format(sortedBills.get(i).getTotal()) + "\n";
+        }
+
         return "Liczba rachunków: " + getBillsCount() + "\n" +
                 "Suma rachunków: " + PriceFormatter.format(getTotal()) + "\n" +
-                "Liczba klientów: " + getCustomerCount() + "\n";
+                "Liczba klientów: " + getCustomerCount() + "\n" +
+                "Historia transakcji: \n" + transactions + "\n";
     }
 }
