@@ -18,7 +18,7 @@ public class Confirmation {
     }
 
     public int getNumOfBills(Denoms denoms) {
-        return 0;
+        return cash.getOrDefault(denoms, 0);
     }
 
     @Override
