@@ -19,7 +19,28 @@ public class ATM {
     }
 
     public Confirmation withdraw(int amount) {
-        return null;
+        if (amount < 0) return new Confirmation(amount, "Negative amount requested; cancelled");
+        if (amount == 0) return new Confirmation(amount, "Zero amount requested; cancelled");
+
+        int total = 0, tmpAmount = amount;
+        LinkedHashMap<Denoms, Integer> tmpCash = new LinkedHashMap<>(cash);
+
+        for (Denoms denoms : cash.keySet()) {
+            int quantity = cash.get(denoms);
+            int maxAmountNeeded = tmpAmount / denoms.getValue();
+
+            total += quantity * denoms.getValue();
+
+            tmpCash.put(denoms, tmpCash.get(denoms) - Math.min(quantity, maxAmountNeeded));
+            tmpAmount -= Math.min(quantity, maxAmountNeeded) * denoms.getValue();
+        }
+
+        if (total < amount) return new Confirmation(amount, "Non sufficient funds; cancelled");
+        if (tmpAmount != 0) return new Confirmation(amount, "Lacking some needed bills; cancelled");
+
+        cash = new LinkedHashMap<>(tmpCash);
+
+        return new Confirmation(amount, "OK\nSTATE HERE");
     }
 
     @Override
