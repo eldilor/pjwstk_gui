@@ -24,15 +24,21 @@ public class ATM {
 
         int total = 0, tmpAmount = amount;
         LinkedHashMap<Denoms, Integer> tmpCash = new LinkedHashMap<>(cash);
+        LinkedHashMap<Denoms, Integer> withdrawnCash = new LinkedHashMap<>();
 
         for (Denoms denoms : cash.keySet()) {
             int quantity = cash.get(denoms);
             int maxAmountNeeded = tmpAmount / denoms.getValue();
+            int withdrawnQuantity = Math.min(quantity, maxAmountNeeded);
 
             total += quantity * denoms.getValue();
 
-            tmpCash.put(denoms, tmpCash.get(denoms) - Math.min(quantity, maxAmountNeeded));
-            tmpAmount -= Math.min(quantity, maxAmountNeeded) * denoms.getValue();
+            if (withdrawnQuantity > 0) withdrawnCash.put(denoms, withdrawnQuantity);
+
+            tmpCash.put(denoms, tmpCash.get(denoms) - withdrawnQuantity);
+            tmpAmount -= withdrawnQuantity * denoms.getValue();
+
+            if (tmpAmount == 0) break;
         }
 
         if (total < amount) return new Confirmation(amount, "Non sufficient funds; cancelled");
@@ -40,7 +46,7 @@ public class ATM {
 
         cash = new LinkedHashMap<>(tmpCash);
 
-        return new Confirmation(amount, "OK\nSTATE HERE");
+        return new Confirmation(amount, "OK", withdrawnCash);
     }
 
     @Override
