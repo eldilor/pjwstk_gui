@@ -18,6 +18,8 @@ public class DateRenderer extends JLabel implements TableCellRenderer {
 
         setBackground(Color.WHITE);
         setText(date.getDayOfWeek().getDisplayName(TextStyle.FULL, new Locale("hu", "HU")));
+        setHorizontalAlignment(JLabel.CENTER);
+        setFont(this.getFont().deriveFont(Font.BOLD));
 
         return this;
     }

@@ -1,6 +1,7 @@
 package p3;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import java.awt.*;
 import java.time.LocalDate;
 
@@ -15,6 +16,9 @@ public class MainFrame extends JFrame {
         jTable.setEnabled(false);
         jTable.setShowGrid(true);
         jTable.setGridColor(Color.BLACK);
+
+        DefaultTableCellRenderer tableHeaderRenderer = (DefaultTableCellRenderer) jTable.getTableHeader().getDefaultRenderer();
+        tableHeaderRenderer.setHorizontalAlignment(JLabel.CENTER);
 
         add(new JScrollPane(jTable));
     }
