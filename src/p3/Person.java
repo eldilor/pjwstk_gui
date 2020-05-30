@@ -21,4 +21,32 @@ public class Person {
         this.weight = weight;
         this.bmi = (int) Math.round(weight / (height * height / 10000.0));
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public LocalDate getBirth() {
+        return birth;
+    }
+
+    public Color getColor() {
+        return color;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public int getWeight() {
+        return weight;
+    }
+
+    public int getBmi() {
+        return bmi;
+    }
 }

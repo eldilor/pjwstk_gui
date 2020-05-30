@@ -1,10 +1,18 @@
 package p3;
 
-import java.util.ArrayList;
+import javax.swing.*;
+import java.awt.*;
 
 public class Main {
     public static void main(String[] args) {
-        ArrayList<Person> people = FileReader.read("src/p3/in.txt");
-        System.out.println(people);
+        SwingUtilities.invokeLater(
+                () -> {
+                    JFrame jf = new MainFrame();
+
+                    jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    jf.setVisible(true);
+                    jf.setSize(new Dimension(500, 500));
+                }
+        );
     }
 }
