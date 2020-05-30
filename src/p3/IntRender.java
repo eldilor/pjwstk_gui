@@ -14,6 +14,7 @@ public class IntRender extends JLabel implements TableCellRenderer {
         int val = (int) jTable.getModel().getValueAt(row, column);
 
         setBackground(Color.WHITE);
+        setFont(this.getFont().deriveFont(Font.PLAIN));
 
         if (column == 4 || column == 5) setHorizontalAlignment(JLabel.RIGHT);
         if (column == 6) {
@@ -21,6 +22,7 @@ public class IntRender extends JLabel implements TableCellRenderer {
             if (val < 18) setBackground(Color.YELLOW);
 
             setHorizontalAlignment(JLabel.CENTER);
+            setFont(this.getFont().deriveFont(Font.BOLD));
         }
 
         setText(val + "");

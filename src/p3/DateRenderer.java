@@ -16,6 +16,7 @@ public class DateRenderer extends JLabel implements TableCellRenderer {
     public Component getTableCellRendererComponent(JTable jTable, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         LocalDate date = (LocalDate) jTable.getModel().getValueAt(row, column);
 
+        setBackground(Color.WHITE);
         setText(date.getDayOfWeek().getDisplayName(TextStyle.FULL, new Locale("hu", "HU")));
 
         return this;
